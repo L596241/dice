@@ -20,7 +20,7 @@ class DiceController {
     
     rollDice() {
         clearTimeout(this.timeout);
-        this.setImgLink("/dice_png/roll.gif");
+        this.setImgLink("https://raw.githubusercontent.com/L596241/dice/main/dice_png/roll.gif");
         this.timeout = setTimeout(() => 
         {
             let link = this.imgLink(this.dice.roll());
