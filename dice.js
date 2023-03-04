@@ -34,7 +34,7 @@ class DiceController {
     }
     
     imgLink(diceNumber) {
-        return `https://raw.githubusercontent.com/L596241/dice/main/dice_png/dice_"${diceNumber}.png`;
+        return `https://raw.githubusercontent.com/L596241/dice/main/dice_png/dice_${diceNumber}.png`;
     } 
 }
 //lagt til lyd paa terningskastene :)
