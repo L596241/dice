@@ -4,6 +4,41 @@ class Dice {
         return Math.floor(Math.random()*6+1);
     }
 }
+// The dice png files are red, but the animation is black..
+// So i made this function to convert red to black
+// instead of changing the photos. Just for fun:)
+function convertRedToBlack(image) {
+    // Create a canvas element
+    let canvas = document.createElement('canvas');
+    canvas.width = image.width;
+    canvas.height = image.height;
+  
+    // Get the 2D context of the canvas
+    let context = canvas.getContext('2d');
+    context.drawImage(image, 0, 0);
+  
+    // Get the image data and iterate through the pixels
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    let pixels = imageData.data;
+    for (let i = 0; i < pixels.length; i += 4) {
+      // Check if the pixel is red
+      if (pixels[i] > 200 && pixels[i + 1] < 100 && pixels[i + 2] < 100) {
+        // If the pixel is red, set the color to black
+        pixels[i] = 0;
+        pixels[i + 1] = 0;
+        pixels[i + 2] = 0;
+      }
+    }
+  
+    // Put the modified image data back onto the canvas
+    context.putImageData(imageData, 0, 0);
+  
+    // Create a new image element with the modified image data
+    let modifiedImage = new Image();
+    modifiedImage.src = canvas.toDataURL();
+    return modifiedImage;
+  }
+  
 
 class DiceController {
     
@@ -25,6 +60,7 @@ class DiceController {
         {
             let link = this.imgLink(this.dice.roll());
             this.setImgLink(link);
+            img.src = convertRedToBlack(img).src;
         },1000);
     }
     
